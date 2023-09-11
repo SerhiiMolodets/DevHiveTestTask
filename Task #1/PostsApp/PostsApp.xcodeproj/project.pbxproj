@@ -15,6 +15,15 @@
 		08DC0C142AAFACE100F87108 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C132AAFACE100F87108 /* Coordinator.swift */; };
 		08DC0C162AAFAD0E00F87108 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C152AAFAD0E00F87108 /* AppCoordinator.swift */; };
 		08DC0C1E2AAFAE1100F87108 /* PostsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C1D2AAFAE1100F87108 /* PostsCoordinator.swift */; };
+		08DC0C222AAFAF4A00F87108 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C212AAFAF4A00F87108 /* NetworkError.swift */; };
+		08DC0C242AAFAF7100F87108 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C232AAFAF7100F87108 /* Endpoint.swift */; };
+		08DC0C262AAFAFC400F87108 /* RequestMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C252AAFAFC400F87108 /* RequestMethod.swift */; };
+		08DC0C282AAFB00200F87108 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C272AAFB00200F87108 /* HTTPClient.swift */; };
+		08DC0C2A2AAFB03800F87108 /* PostsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C292AAFB03800F87108 /* PostsEndpoint.swift */; };
+		08DC0C2C2AAFB42A00F87108 /* PostsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C2B2AAFB42A00F87108 /* PostsNetworkService.swift */; };
+		08DC0C2E2AAFB55000F87108 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C2D2AAFB55000F87108 /* User.swift */; };
+		08DC0C302AAFB5CB00F87108 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C2F2AAFB5CB00F87108 /* Post.swift */; };
+		08DC0C322AAFB5ED00F87108 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C312AAFB5ED00F87108 /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +37,15 @@
 		08DC0C132AAFACE100F87108 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		08DC0C152AAFAD0E00F87108 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		08DC0C1D2AAFAE1100F87108 /* PostsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsCoordinator.swift; sourceTree = "<group>"; };
+		08DC0C212AAFAF4A00F87108 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		08DC0C232AAFAF7100F87108 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		08DC0C252AAFAFC400F87108 /* RequestMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMethod.swift; sourceTree = "<group>"; };
+		08DC0C272AAFB00200F87108 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		08DC0C292AAFB03800F87108 /* PostsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsEndpoint.swift; sourceTree = "<group>"; };
+		08DC0C2B2AAFB42A00F87108 /* PostsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsNetworkService.swift; sourceTree = "<group>"; };
+		08DC0C2D2AAFB55000F87108 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		08DC0C2F2AAFB5CB00F87108 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		08DC0C312AAFB5ED00F87108 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +82,7 @@
 				08DC0C102AAFABB900F87108 /* Application */,
 				08DC0C112AAFABDE00F87108 /* Resources */,
 				08DC0C122AAFACB400F87108 /* Common */,
+				08DC0C1F2AAFAF1700F87108 /* Services */,
 			);
 			path = PostsApp;
 			sourceTree = "<group>";
@@ -111,6 +130,9 @@
 		08DC0C182AAFADB300F87108 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				08DC0C2D2AAFB55000F87108 /* User.swift */,
+				08DC0C2F2AAFB5CB00F87108 /* Post.swift */,
+				08DC0C312AAFB5ED00F87108 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -143,6 +165,27 @@
 			children = (
 			);
 			path = DI;
+			sourceTree = "<group>";
+		};
+		08DC0C1F2AAFAF1700F87108 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				08DC0C202AAFAF2600F87108 /* Network */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		08DC0C202AAFAF2600F87108 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				08DC0C2B2AAFB42A00F87108 /* PostsNetworkService.swift */,
+				08DC0C292AAFB03800F87108 /* PostsEndpoint.swift */,
+				08DC0C272AAFB00200F87108 /* HTTPClient.swift */,
+				08DC0C232AAFAF7100F87108 /* Endpoint.swift */,
+				08DC0C252AAFAFC400F87108 /* RequestMethod.swift */,
+				08DC0C212AAFAF4A00F87108 /* NetworkError.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,11 +258,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DC0C2E2AAFB55000F87108 /* User.swift in Sources */,
 				08DC0C1E2AAFAE1100F87108 /* PostsCoordinator.swift in Sources */,
+				08DC0C222AAFAF4A00F87108 /* NetworkError.swift in Sources */,
+				08DC0C2A2AAFB03800F87108 /* PostsEndpoint.swift in Sources */,
+				08DC0C242AAFAF7100F87108 /* Endpoint.swift in Sources */,
+				08DC0C302AAFB5CB00F87108 /* Post.swift in Sources */,
+				08DC0C2C2AAFB42A00F87108 /* PostsNetworkService.swift in Sources */,
 				08DC0C142AAFACE100F87108 /* Coordinator.swift in Sources */,
 				08DC0C012AAFAACE00F87108 /* ListViewController.swift in Sources */,
 				08DC0C162AAFAD0E00F87108 /* AppCoordinator.swift in Sources */,
+				08DC0C322AAFB5ED00F87108 /* Comment.swift in Sources */,
+				08DC0C282AAFB00200F87108 /* HTTPClient.swift in Sources */,
 				08DC0BFD2AAFAACE00F87108 /* AppDelegate.swift in Sources */,
+				08DC0C262AAFAFC400F87108 /* RequestMethod.swift in Sources */,
 				08DC0BFF2AAFAACE00F87108 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

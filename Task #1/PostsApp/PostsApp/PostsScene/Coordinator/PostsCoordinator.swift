@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Swinject
 
 final class FeedCoordinator: Coordinator {
     let navigationController: UINavigationController
@@ -19,7 +20,9 @@ final class FeedCoordinator: Coordinator {
     }
     
     func start() {
+        let viewModel = Container.listViewModel.resolve(ListViewModelProtocol.self)
         let viewController = ListViewController()
+        viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
     }
     

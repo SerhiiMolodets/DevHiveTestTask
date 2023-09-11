@@ -24,6 +24,13 @@
 		08DC0C2E2AAFB55000F87108 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C2D2AAFB55000F87108 /* User.swift */; };
 		08DC0C302AAFB5CB00F87108 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C2F2AAFB5CB00F87108 /* Post.swift */; };
 		08DC0C322AAFB5ED00F87108 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C312AAFB5ED00F87108 /* Comment.swift */; };
+		08DC0C342AAFB96200F87108 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C332AAFB96200F87108 /* ListViewModel.swift */; };
+		08DC0C372AAFBC1300F87108 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C362AAFBC1300F87108 /* RxCocoa */; };
+		08DC0C392AAFBC1300F87108 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C382AAFBC1300F87108 /* RxRelay */; };
+		08DC0C3B2AAFBC1300F87108 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C3A2AAFBC1300F87108 /* RxSwift */; };
+		08DC0C3E2AAFBC3100F87108 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C3D2AAFBC3100F87108 /* Swinject */; };
+		08DC0C402AAFBC8D00F87108 /* PostsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C3F2AAFBC8D00F87108 /* PostsContainer.swift */; };
+		08DC0C442AAFBE6B00F87108 /* PostsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +53,9 @@
 		08DC0C2D2AAFB55000F87108 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		08DC0C2F2AAFB5CB00F87108 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		08DC0C312AAFB5ED00F87108 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		08DC0C332AAFB96200F87108 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		08DC0C3F2AAFBC8D00F87108 /* PostsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsContainer.swift; sourceTree = "<group>"; };
+		08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DC0C3B2AAFBC1300F87108 /* RxSwift in Frameworks */,
+				08DC0C392AAFBC1300F87108 /* RxRelay in Frameworks */,
+				08DC0C372AAFBC1300F87108 /* RxCocoa in Frameworks */,
+				08DC0C3E2AAFBC3100F87108 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +154,7 @@
 		08DC0C192AAFADB800F87108 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				08DC0C332AAFB96200F87108 /* ListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -163,6 +178,7 @@
 		08DC0C1C2AAFADDD00F87108 /* DI */ = {
 			isa = PBXGroup;
 			children = (
+				08DC0C3F2AAFBC8D00F87108 /* PostsContainer.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -170,7 +186,9 @@
 		08DC0C1F2AAFAF1700F87108 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				08DC0C412AAFBD9E00F87108 /* Data */,
 				08DC0C202AAFAF2600F87108 /* Network */,
+				08DC0C422AAFBDAE00F87108 /* Caсhing */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -186,6 +204,21 @@
 				08DC0C212AAFAF4A00F87108 /* NetworkError.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		08DC0C412AAFBD9E00F87108 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		08DC0C422AAFBDAE00F87108 /* Caсhing */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Caсhing";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +237,12 @@
 			dependencies = (
 			);
 			name = PostsApp;
+			packageProductDependencies = (
+				08DC0C362AAFBC1300F87108 /* RxCocoa */,
+				08DC0C382AAFBC1300F87108 /* RxRelay */,
+				08DC0C3A2AAFBC1300F87108 /* RxSwift */,
+				08DC0C3D2AAFBC3100F87108 /* Swinject */,
+			);
 			productName = PostsApp;
 			productReference = 08DC0BF92AAFAACE00F87108 /* PostsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -232,6 +271,10 @@
 				Base,
 			);
 			mainGroup = 08DC0BF02AAFAACE00F87108;
+			packageReferences = (
+				08DC0C352AAFBC1300F87108 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				08DC0C3C2AAFBC3100F87108 /* XCRemoteSwiftPackageReference "Swinject" */,
+			);
 			productRefGroup = 08DC0BFA2AAFAACE00F87108 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,10 +303,13 @@
 			files = (
 				08DC0C2E2AAFB55000F87108 /* User.swift in Sources */,
 				08DC0C1E2AAFAE1100F87108 /* PostsCoordinator.swift in Sources */,
+				08DC0C442AAFBE6B00F87108 /* PostsDataService.swift in Sources */,
 				08DC0C222AAFAF4A00F87108 /* NetworkError.swift in Sources */,
+				08DC0C402AAFBC8D00F87108 /* PostsContainer.swift in Sources */,
 				08DC0C2A2AAFB03800F87108 /* PostsEndpoint.swift in Sources */,
 				08DC0C242AAFAF7100F87108 /* Endpoint.swift in Sources */,
 				08DC0C302AAFB5CB00F87108 /* Post.swift in Sources */,
+				08DC0C342AAFB96200F87108 /* ListViewModel.swift in Sources */,
 				08DC0C2C2AAFB42A00F87108 /* PostsNetworkService.swift in Sources */,
 				08DC0C142AAFACE100F87108 /* Coordinator.swift in Sources */,
 				08DC0C012AAFAACE00F87108 /* ListViewController.swift in Sources */,
@@ -480,6 +526,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		08DC0C352AAFBC1300F87108 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+		08DC0C3C2AAFBC3100F87108 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:Swinject/Swinject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		08DC0C362AAFBC1300F87108 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08DC0C352AAFBC1300F87108 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		08DC0C382AAFBC1300F87108 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08DC0C352AAFBC1300F87108 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		08DC0C3A2AAFBC1300F87108 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08DC0C352AAFBC1300F87108 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		08DC0C3D2AAFBC3100F87108 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 08DC0C3C2AAFBC3100F87108 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 08DC0BF12AAFAACE00F87108 /* Project object */;
 }

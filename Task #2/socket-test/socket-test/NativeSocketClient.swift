@@ -8,22 +8,16 @@
 import Foundation
 
 class NativeSocketClient: NSObject, URLSessionWebSocketDelegate {
-    var session: URLSession { URLSession(configuration: .default,
+    
+    private var session: URLSession { URLSession(configuration: .default,
                                          delegate: self,
                                          delegateQueue: OperationQueue()) }
-    var webSocket: URLSessionWebSocketTask?
+    
+    private var webSocket: URLSessionWebSocketTask?
     
     func start() {
         webSocket = session.webSocketTask(with: URL(string: "ws://localhost:8080")!)
         webSocket?.resume()
-    }
-    
-    
-    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
-        ping()
-        receive()
-        print("Connected native")
-        
     }
     
     func send(message: String) {
@@ -56,15 +50,7 @@ class NativeSocketClient: NSObject, URLSessionWebSocketDelegate {
         })
     }
     
-    func ping() {
-        webSocket?.sendPing { error in
-            if let error {
-                print(error)
-            }
-        }
-    }
-    
-    func close() {
-        webSocket?.cancel(with: .goingAway, reason: "Manual ended".data(using: .utf8))
+    func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        receive()
     }
 }

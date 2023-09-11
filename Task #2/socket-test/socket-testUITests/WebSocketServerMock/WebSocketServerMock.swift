@@ -20,7 +20,6 @@ class WebSocketServerMock {
         server[""] = websocket(text: { [weak self] session, message in
             self?.handleConnected(session: session)
             text?(message)
-            self?.sendMessage(message)
         }, connected: { [weak self] session in
             self?.handleConnected(session: session)
             connected?()

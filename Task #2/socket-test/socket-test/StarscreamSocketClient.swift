@@ -8,7 +8,8 @@ import Foundation
 import Starscream
 
 
-class StarscreamSocketClient {
+class StarscreamSocketClient: WebSocketDelegate {
+    
     private var socket: WebSocket?
     var isConnected = false
     
@@ -35,10 +36,8 @@ class StarscreamSocketClient {
             print("WebSocket encountered an error")
         }
     }
-}
-
-extension StarscreamSocketClient: WebSocketDelegate {
-
+    
+    
     func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocketClient) {
         switch event {
         case .connected(let headers):

@@ -30,7 +30,10 @@
 		08DC0C3B2AAFBC1300F87108 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C3A2AAFBC1300F87108 /* RxSwift */; };
 		08DC0C3E2AAFBC3100F87108 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = 08DC0C3D2AAFBC3100F87108 /* Swinject */; };
 		08DC0C402AAFBC8D00F87108 /* PostsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C3F2AAFBC8D00F87108 /* PostsContainer.swift */; };
-		08DC0C442AAFBE6B00F87108 /* PostsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */; };
+		08DC0C442AAFBE6B00F87108 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C432AAFBE6B00F87108 /* DataService.swift */; };
+		08DC0C462AB0A76C00F87108 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C452AB0A76C00F87108 /* PostCell.swift */; };
+		08DC0C482AB0B21900F87108 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C472AB0B21900F87108 /* CommentsViewController.swift */; };
+		08DC0C4A2AB0B25500F87108 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C492AB0B25500F87108 /* CommentsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +58,10 @@
 		08DC0C312AAFB5ED00F87108 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		08DC0C332AAFB96200F87108 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		08DC0C3F2AAFBC8D00F87108 /* PostsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsContainer.swift; sourceTree = "<group>"; };
-		08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDataService.swift; sourceTree = "<group>"; };
+		08DC0C432AAFBE6B00F87108 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		08DC0C452AB0A76C00F87108 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		08DC0C472AB0B21900F87108 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		08DC0C492AB0B25500F87108 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				08DC0C332AAFB96200F87108 /* ListViewModel.swift */,
+				08DC0C492AB0B25500F87108 /* CommentsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -163,6 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				08DC0C002AAFAACE00F87108 /* ListViewController.swift */,
+				08DC0C452AB0A76C00F87108 /* PostCell.swift */,
+				08DC0C472AB0B21900F87108 /* CommentsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -209,7 +218,7 @@
 		08DC0C412AAFBD9E00F87108 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				08DC0C432AAFBE6B00F87108 /* PostsDataService.swift */,
+				08DC0C432AAFBE6B00F87108 /* DataService.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -303,16 +312,19 @@
 			files = (
 				08DC0C2E2AAFB55000F87108 /* User.swift in Sources */,
 				08DC0C1E2AAFAE1100F87108 /* PostsCoordinator.swift in Sources */,
-				08DC0C442AAFBE6B00F87108 /* PostsDataService.swift in Sources */,
+				08DC0C442AAFBE6B00F87108 /* DataService.swift in Sources */,
 				08DC0C222AAFAF4A00F87108 /* NetworkError.swift in Sources */,
 				08DC0C402AAFBC8D00F87108 /* PostsContainer.swift in Sources */,
 				08DC0C2A2AAFB03800F87108 /* PostsEndpoint.swift in Sources */,
 				08DC0C242AAFAF7100F87108 /* Endpoint.swift in Sources */,
 				08DC0C302AAFB5CB00F87108 /* Post.swift in Sources */,
+				08DC0C482AB0B21900F87108 /* CommentsViewController.swift in Sources */,
 				08DC0C342AAFB96200F87108 /* ListViewModel.swift in Sources */,
 				08DC0C2C2AAFB42A00F87108 /* PostsNetworkService.swift in Sources */,
 				08DC0C142AAFACE100F87108 /* Coordinator.swift in Sources */,
+				08DC0C4A2AB0B25500F87108 /* CommentsViewModel.swift in Sources */,
 				08DC0C012AAFAACE00F87108 /* ListViewController.swift in Sources */,
+				08DC0C462AB0A76C00F87108 /* PostCell.swift in Sources */,
 				08DC0C162AAFAD0E00F87108 /* AppCoordinator.swift in Sources */,
 				08DC0C322AAFB5ED00F87108 /* Comment.swift in Sources */,
 				08DC0C282AAFB00200F87108 /* HTTPClient.swift in Sources */,

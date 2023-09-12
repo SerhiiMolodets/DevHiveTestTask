@@ -10,22 +10,22 @@ import Foundation
 enum PostsEndpoint: Endpoint {
     
     case users
-    case listBy(id: Int)
-    case commentsBy(id: Int)
+    case posts
+    case comments
     
     var path: String {
         switch self {
         case .users:
             return "/users"
-        case .listBy:
+        case .posts:
             return "/posts"
-        case .commentsBy:
+        case .comments:
             return "/comments"
         }
     }
     var method: RequestMethod {
         switch self {
-        case .users, .listBy, .commentsBy:
+        case .users, .posts, .comments:
             return .get
         }
     }
@@ -36,12 +36,7 @@ enum PostsEndpoint: Endpoint {
         return nil
     }
     var queryItems: [URLQueryItem]? {
-        switch self {
-        case .users: return nil
-        case .commentsBy(id: let id): return [URLQueryItem(name: "postId", value: "\(id)")]
-        case .listBy(id: let id): return [URLQueryItem(name: "userId", value: "\(id)")]
-            
-        }
+        return nil
     }
-
+    
 }

@@ -9,8 +9,8 @@ import Foundation
 
 protocol PostNetworkServiceProtocol {
     func getUsers() async throws -> [User]
-    func getComments(by id: Int) async throws -> [Comment]
-    func getPosts(by userId: Int) async throws -> [Post]
+    func getComments() async throws -> [Comment]
+    func getPosts() async throws -> [Post]
 }
 
 struct PostNetworkService: HTTPClient, PostNetworkServiceProtocol {
@@ -31,10 +31,10 @@ struct PostNetworkService: HTTPClient, PostNetworkServiceProtocol {
             throw error
         }
     }
-    func getComments(by id: Int) async throws -> [Comment] {
+    func getComments() async throws -> [Comment] {
         do {
             return try await sendRequest(
-                endpoint: PostsEndpoint.commentsBy(id: id),
+                endpoint: PostsEndpoint.comments,
                 useCache: true,
                 decoder: decoder
             )
@@ -43,10 +43,10 @@ struct PostNetworkService: HTTPClient, PostNetworkServiceProtocol {
         }
     }
     
-    func getPosts(by userId: Int) async throws -> [Post] {
+    func getPosts() async throws -> [Post] {
         do {
             return try await sendRequest(
-                endpoint: PostsEndpoint.listBy(id: userId),
+                endpoint: PostsEndpoint.posts,
                 useCache: true,
                 decoder: decoder
             )

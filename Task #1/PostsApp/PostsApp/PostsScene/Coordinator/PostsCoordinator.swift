@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 import Swinject
+import RxSwift
 
 final class FeedCoordinator: Coordinator {
     let navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     weak var parentCoordinator: Coordinator?
+    var bag = DisposeBag()
     
     // MARK: - Init
     init(navigationController: UINavigationController) {
@@ -24,9 +26,19 @@ final class FeedCoordinator: Coordinator {
         let viewController = ListViewController()
         viewController.viewModel = viewModel
         navigationController.pushViewController(viewController, animated: true)
+        
+        viewModel?.showComments.asObservable()
+            .subscribe { [weak self] id in
+                self?.showComments(for: id)
+            }.disposed(by: bag)
     }
     
     
-    private func openDetail() {
+    private func showComments(for postID: Int) {
+        let viewModel = Container.comentsViewModel.resolve(CommentsViewModelProtocol.self)
+        viewModel?.currentPostId.accept(postID)
+        let viewController = CommentsViewController()
+        viewController.viewModel = viewModel
+        navigationController.pushViewController(viewController, animated: true)
     }
 }

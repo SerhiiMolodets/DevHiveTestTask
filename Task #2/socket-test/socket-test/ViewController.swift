@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         starscreamSocketClient.connectToServer()
         
         // MARK: - The second way using native
-        //        secondSocket.start()
+//        nativeSocketClient.start()
     }
 }
 

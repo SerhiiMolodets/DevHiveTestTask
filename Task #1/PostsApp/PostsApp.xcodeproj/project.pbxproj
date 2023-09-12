@@ -34,6 +34,7 @@
 		08DC0C462AB0A76C00F87108 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C452AB0A76C00F87108 /* PostCell.swift */; };
 		08DC0C482AB0B21900F87108 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C472AB0B21900F87108 /* CommentsViewController.swift */; };
 		08DC0C4A2AB0B25500F87108 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C492AB0B25500F87108 /* CommentsViewModel.swift */; };
+		08DC0C4C2AB0BA6600F87108 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DC0C4B2AB0BA6600F87108 /* CommentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		08DC0C452AB0A76C00F87108 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		08DC0C472AB0B21900F87108 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		08DC0C492AB0B25500F87108 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
+		08DC0C4B2AB0BA6600F87108 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +174,7 @@
 				08DC0C002AAFAACE00F87108 /* ListViewController.swift */,
 				08DC0C452AB0A76C00F87108 /* PostCell.swift */,
 				08DC0C472AB0B21900F87108 /* CommentsViewController.swift */,
+				08DC0C4B2AB0BA6600F87108 /* CommentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				08DC0C2E2AAFB55000F87108 /* User.swift in Sources */,
 				08DC0C1E2AAFAE1100F87108 /* PostsCoordinator.swift in Sources */,
 				08DC0C442AAFBE6B00F87108 /* DataService.swift in Sources */,
+				08DC0C4C2AB0BA6600F87108 /* CommentCell.swift in Sources */,
 				08DC0C222AAFAF4A00F87108 /* NetworkError.swift in Sources */,
 				08DC0C402AAFBC8D00F87108 /* PostsContainer.swift in Sources */,
 				08DC0C2A2AAFB03800F87108 /* PostsEndpoint.swift in Sources */,

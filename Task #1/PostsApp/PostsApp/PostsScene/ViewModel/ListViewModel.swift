@@ -21,7 +21,7 @@ protocol ListViewModelProtocol {
 
 final class ListViewModel: ListViewModelProtocol {
     var bag = DisposeBag()
-    var dataService: PostsDataServiceProtocol? = Container.commentsData.resolve(PostsDataServiceProtocol.self)
+    var dataService: PostsDataServiceProtocol? = Container.postData.resolve(PostsDataServiceProtocol.self)
     var currentUser = BehaviorRelay<User>(value: User(id: 0, name: "", username: ""))
     var filteredPosts = PublishSubject<[Post]>()
     var showComments = PublishSubject<Int>()

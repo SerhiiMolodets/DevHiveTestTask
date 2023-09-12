@@ -35,6 +35,7 @@ final class FeedCoordinator: Coordinator {
     
     
     private func showComments(for postID: Int) {
+        navigationController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         let viewModel = Container.comentsViewModel.resolve(CommentsViewModelProtocol.self)
         viewModel?.currentPostId.accept(postID)
         let viewController = CommentsViewController()

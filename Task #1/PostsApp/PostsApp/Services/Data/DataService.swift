@@ -18,10 +18,6 @@ protocol CommentsDataServiceProtocol {
 }
 
 class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
-    func getComments() async throws -> [Comment] {
-        
-    }
-    
     let networkService: PostNetworkServiceProtocol? = Container.network.resolve(PostNetworkServiceProtocol.self)
     
     func getUsers() async throws -> [User] {
@@ -40,6 +36,18 @@ class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
         do {
             if let posts = try await networkService?.getPosts() {
                 return posts
+            } else {
+                return []
+            }
+        } catch {
+            throw error
+        }
+    }
+    
+    func getComments() async throws -> [Comment] {
+        do {
+            if let comments = try await networkService?.getComments() {
+                return comments
             } else {
                 return []
             }

@@ -10,9 +10,7 @@ import RealmSwift
 
 protocol RealmServiceProtocol {
     func save<T: Object>(item: T)
-    func loadUsers() async throws -> [User]
-    func loadPosts() async throws -> [Post]
-    func loadComments() async throws -> [Comment] 
+    func load<T: Object>() async throws -> [T]
 }
 final class RealmService: RealmServiceProtocol {
     
@@ -27,38 +25,25 @@ final class RealmService: RealmServiceProtocol {
         }
     }
 
-    
     @MainActor
-    func loadUsers() async throws -> [User] {
+    func load<T: Object>() async throws -> [T] {
         let realm = try await Realm()
-        let users = Array(realm.objects(User.self))
-        return users
+        let loaded = Array(realm.objects(T.self))
+        return loaded
     }
-    
-    @MainActor
-    func loadPosts() async throws -> [Post] {
-        let realm = try await Realm()
-        let posts = Array(realm.objects(Post.self))
-        return posts
-    }
-    
-    @MainActor
-    func loadComments() async throws -> [Comment] {
-        let realm = try await Realm()
-        let comments = Array(realm.objects(Comment.self))
-        return comments
-    }
-    
-    func cleanAll() {
-        DispatchQueue.main.async {
-            do {
-                   let realm = try Realm()
-                   try realm.write {
-                       realm.deleteAll()
-                   }
-               } catch let error {
-                   print("Error deleting all wallet models: \(error)")
-               }
-        }
-    }
+//
+//    @MainActor
+//    func loadPosts() async throws -> [Post] {
+//        let realm = try await Realm()
+//        let posts = Array(realm.objects(Post.self))
+//        return posts
+//    }
+//
+//    @MainActor
+//    func loadComments() async throws -> [Comment] {
+//        let realm = try await Realm()
+//        let comments = Array(realm.objects(Comment.self))
+//        return comments
+//    }
+//
 }

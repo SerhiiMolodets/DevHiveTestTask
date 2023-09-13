@@ -30,7 +30,7 @@ final class AppCoordinator: AppCoordinatorProtocol {
     }
     
     private func openFeedScene() {
-        let coordinator = FeedCoordinator(navigationController: navigationController)
+        let coordinator = PostsCoordinator(navigationController: navigationController)
         childCoordinators.append(coordinator)
         coordinator.start()
     }

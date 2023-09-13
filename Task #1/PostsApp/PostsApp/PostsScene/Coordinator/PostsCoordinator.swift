@@ -10,11 +10,11 @@ import UIKit
 import Swinject
 import RxSwift
 
-final class FeedCoordinator: Coordinator {
+final class PostsCoordinator: Coordinator {
     let navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     weak var parentCoordinator: Coordinator?
-    var bag = DisposeBag()
+    private let bag = DisposeBag()
     
     // MARK: - Init
     init(navigationController: UINavigationController) {

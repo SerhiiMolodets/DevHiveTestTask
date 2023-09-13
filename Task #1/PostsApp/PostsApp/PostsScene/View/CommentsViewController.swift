@@ -9,7 +9,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class CommentsViewController: UIViewController {
+final class CommentsViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: CommentsViewModelProtocol?
@@ -53,7 +53,6 @@ class CommentsViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
         ])
     }
     
@@ -69,8 +68,8 @@ class CommentsViewController: UIViewController {
         
         viewModel.filteredComments
             .observe(on:MainScheduler.asyncInstance)
-            .subscribe(onNext: { comments in
-                    self.title = "Comments (\(comments.count))"
+            .subscribe(onNext: { [weak self] comments in
+                    self?.title = "Comments (\(comments.count))"
             }).disposed(by: bag)
     }
 }

@@ -9,11 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ListViewController: UIViewController {
+final class ListViewController: UIViewController {
     
     // MARK: - Properties
     var viewModel: ListViewModelProtocol?
-    var bag = DisposeBag()
+    private let bag = DisposeBag()
     
     // MARK: - Views
     private let tableView: UITableView = {
@@ -53,7 +53,6 @@ class ListViewController: UIViewController {
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            
         ])
     }
     
@@ -61,10 +60,10 @@ class ListViewController: UIViewController {
         Task {
             guard let users = await viewModel?.getUsers() else { return }
             let newMenuItems =  users.map { user in
-                UIAction(title: user.name) { _ in
+                UIAction(title: user.name) { [weak self] _ in
                     DispatchQueue.main.async {
-                            self.viewModel?.currentUser.accept(user)
-                        }
+                        self?.viewModel?.currentUser.accept(user)
+                    }
                 }
             }
             let menu = UIMenu(title: "", options: .displayInline, children: newMenuItems)
@@ -76,10 +75,8 @@ class ListViewController: UIViewController {
     private func bindSelectedUser() {
         viewModel?.currentUser
             .observe(on:MainScheduler.asyncInstance)
-            .subscribe(onNext: { user in
-                DispatchQueue.main.async {
-                    self.title = user.name
-                }
+            .subscribe(onNext: { [weak self] user in
+                self?.title = user.name
             }).disposed(by: bag)
     }
     private func bindTableData() {

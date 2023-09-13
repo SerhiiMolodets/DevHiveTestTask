@@ -8,6 +8,8 @@
 import Foundation
 import Swinject
 
+typealias DataServiceProtocol = PostsDataServiceProtocol & CommentsDataServiceProtocol
+
 protocol PostsDataServiceProtocol {
     func getUsers() async throws -> [User]
     func getPosts() async throws -> [Post]
@@ -17,14 +19,14 @@ protocol CommentsDataServiceProtocol {
     func getComments() async throws -> [Comment]
 }
 
-final class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
+final class DataService: DataServiceProtocol {
     let networkService: PostNetworkServiceProtocol? = Container.network.resolve(PostNetworkServiceProtocol.self)
-    let realmService = RealmService()
+    let realmService: RealmServiceProtocol? = Container.cache.resolve(RealmServiceProtocol.self)
     
     func getUsers() async throws -> [User] {
+        guard let realmService else { return [] }
         do {
-            var users = try await realmService.loadUsers()
-            
+            var users: [User] = try await realmService.load()
             if users.isEmpty, let downloaded = try await networkService?.getUsers() {
                 downloaded.forEach { realmService.save(item: $0) }
                 users = downloaded
@@ -36,9 +38,9 @@ final class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
     }
 
     func getPosts() async throws -> [Post] {
-        var posts: [Post] = []
+        guard let realmService else { return [] }
         do {
-            posts = try await realmService.loadPosts()
+            var posts: [Post] = try await realmService.load()
             if posts.isEmpty, let downloaded = try await networkService?.getPosts() {
                 downloaded.forEach { realmService.save(item: $0) }
                 posts = downloaded
@@ -50,9 +52,9 @@ final class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
     }
     
     func getComments() async throws -> [Comment] {
-        var comments: [Comment] = []
+        guard let realmService else { return [] }
         do {
-            comments = try await realmService.loadComments()
+            var comments: [Comment] = try await realmService.load()
             if comments.isEmpty, let downloaded = try await networkService?.getComments() {
                 downloaded.forEach { realmService.save(item: $0) }
                 comments = downloaded

@@ -12,24 +12,21 @@ import Swinject
 
 protocol ListViewModelProtocol {
     func getUsers() async -> [User]
-    var users: [User] { get set }
     var currentUser: BehaviorRelay<User> { get }
     var filteredPosts: PublishSubject<[Post]> { get }
     var showComments: PublishSubject<Int> { get }
 }
 
 final class ListViewModel: ListViewModelProtocol {
-    var bag = DisposeBag()
-    var dataService: PostsDataServiceProtocol? = Container.postData.resolve(PostsDataServiceProtocol.self)
-    var currentUser = BehaviorRelay<User>(value: User())
-    var filteredPosts = PublishSubject<[Post]>()
-    var showComments = PublishSubject<Int>()
-    var users: [User] = []
-    var posts: [Post] = []
+    private let bag = DisposeBag()
+    private let dataService: PostsDataServiceProtocol? = Container.postData.resolve(PostsDataServiceProtocol.self)
+    let currentUser = BehaviorRelay<User>(value: User())
+    let filteredPosts = PublishSubject<[Post]>()
+    let showComments = PublishSubject<Int>()
+    private  var posts: [Post] = []
     
     init() {
         Task {
-//            users = await getUsers()
             posts = await getPosts()
         }
         filterPosts()
@@ -71,7 +68,4 @@ final class ListViewModel: ListViewModelProtocol {
             }
         }.disposed(by: bag)
     }
-    
-    
-    
 }

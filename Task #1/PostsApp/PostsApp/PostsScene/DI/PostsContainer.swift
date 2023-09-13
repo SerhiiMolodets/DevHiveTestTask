@@ -49,4 +49,11 @@ extension Container {
         }
         return container
     }()
+    static let cache: Container = {
+        let container = Container()
+        container.register(RealmServiceProtocol.self) { _ in
+            RealmService()
+        }
+        return container
+    }()
 }

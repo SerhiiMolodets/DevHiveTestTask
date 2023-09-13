@@ -7,10 +7,11 @@
 
 import UIKit
 
-class PostCell: UITableViewCell {
-    
+final class PostCell: UITableViewCell {
+    // MARK: - Properties
     static var identifier: String { String(describing: Self.self) }
     
+    // MARK: - Views
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -30,7 +31,7 @@ class PostCell: UITableViewCell {
         label.textAlignment = .left
         return label
     }()
-
+    
     
     // MARK: - Flow funcs
     func configure(with post: Post) {
@@ -44,9 +45,8 @@ class PostCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(postLabel)
         setupConstraints()
-        
     }
-
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -58,7 +58,5 @@ class PostCell: UITableViewCell {
             postLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             postLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
         ])
-        
     }
-
 }

@@ -17,11 +17,11 @@ protocol CommentsViewModelProtocol {
 }
 
 final class CommentsViewModel: CommentsViewModelProtocol {
-    var bag = DisposeBag()
-    var dataService: CommentsDataServiceProtocol? = Container.commentsData.resolve(CommentsDataServiceProtocol.self)
+    private let bag = DisposeBag()
+    private let dataService: CommentsDataServiceProtocol? = Container.commentsData.resolve(CommentsDataServiceProtocol.self)
     var currentPostId = BehaviorRelay<Int>(value: 1)
     var filteredComments = PublishSubject<[Comment]>()
-    var comments: [Comment] = []
+    private var comments: [Comment] = []
     
     init() {
         Task {
@@ -33,7 +33,6 @@ final class CommentsViewModel: CommentsViewModelProtocol {
      func getComments() async ->  [Comment] {
         do {
             if let data = try await dataService?.getComments() {
-
                 return data
             }
         } catch {
@@ -43,12 +42,11 @@ final class CommentsViewModel: CommentsViewModelProtocol {
     }
     
     private func filterComments() {
-        currentPostId.subscribe(onNext: { postId in
+        currentPostId.subscribe(onNext: { [weak self] postId in
             DispatchQueue.main.async {
-                let filteredComments = self.comments.filter { $0.postId == postId }
-                self.filteredComments.onNext(filteredComments)
+                let filteredComments = self?.comments.filter { $0.postId == postId }
+                self?.filteredComments.onNext(filteredComments ?? [])
             }
         }).disposed(by: bag)
     }
-    
 }

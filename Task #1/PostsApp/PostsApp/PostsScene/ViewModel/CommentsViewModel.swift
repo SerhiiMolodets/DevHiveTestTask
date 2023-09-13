@@ -44,8 +44,10 @@ final class CommentsViewModel: CommentsViewModelProtocol {
     
     private func filterComments() {
         currentPostId.subscribe(onNext: { postId in
-            let filteredComments = self.comments.filter { $0.postId == postId }
-            self.filteredComments.onNext(filteredComments)
+            DispatchQueue.main.async {
+                let filteredComments = self.comments.filter { $0.postId == postId }
+                self.filteredComments.onNext(filteredComments)
+            }
         }).disposed(by: bag)
     }
     

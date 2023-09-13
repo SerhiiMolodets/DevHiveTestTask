@@ -17,40 +17,47 @@ protocol CommentsDataServiceProtocol {
     func getComments() async throws -> [Comment]
 }
 
-class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
+final class DataService: PostsDataServiceProtocol, CommentsDataServiceProtocol {
     let networkService: PostNetworkServiceProtocol? = Container.network.resolve(PostNetworkServiceProtocol.self)
+    let realmService = RealmService()
     
     func getUsers() async throws -> [User] {
         do {
-            if let users = try await networkService?.getUsers() {
-                return users
-            } else {
-                return []
+            var users = try await realmService.loadUsers()
+            
+            if users.isEmpty, let downloaded = try await networkService?.getUsers() {
+                downloaded.forEach { realmService.save(item: $0) }
+                users = downloaded
             }
+            return users
         } catch {
             throw error
         }
     }
-    
+
     func getPosts() async throws -> [Post] {
+        var posts: [Post] = []
         do {
-            if let posts = try await networkService?.getPosts() {
-                return posts
-            } else {
-                return []
+            posts = try await realmService.loadPosts()
+            if posts.isEmpty, let downloaded = try await networkService?.getPosts() {
+                downloaded.forEach { realmService.save(item: $0) }
+                posts = downloaded
             }
+            return posts
         } catch {
             throw error
         }
     }
     
     func getComments() async throws -> [Comment] {
+        var comments: [Comment] = []
         do {
-            if let comments = try await networkService?.getComments() {
-                return comments
-            } else {
-                return []
+            comments = try await realmService.loadComments()
+            if comments.isEmpty, let downloaded = try await networkService?.getComments() {
+                downloaded.forEach { realmService.save(item: $0) }
+                comments = downloaded
             }
+            return comments
         } catch {
             throw error
         }

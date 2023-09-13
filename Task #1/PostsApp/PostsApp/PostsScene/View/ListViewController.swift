@@ -62,7 +62,9 @@ class ListViewController: UIViewController {
             guard let users = await viewModel?.getUsers() else { return }
             let newMenuItems =  users.map { user in
                 UIAction(title: user.name) { _ in
-                    self.viewModel?.currentUser.accept(user)
+                    DispatchQueue.main.async {
+                            self.viewModel?.currentUser.accept(user)
+                        }
                 }
             }
             let menu = UIMenu(title: "", options: .displayInline, children: newMenuItems)
@@ -73,6 +75,7 @@ class ListViewController: UIViewController {
     
     private func bindSelectedUser() {
         viewModel?.currentUser
+            .observe(on:MainScheduler.asyncInstance)
             .subscribe(onNext: { user in
                 DispatchQueue.main.async {
                     self.title = user.name
@@ -82,6 +85,7 @@ class ListViewController: UIViewController {
     private func bindTableData() {
         guard let viewModel else { return }
         viewModel.filteredPosts
+            .observe(on:MainScheduler.asyncInstance)
             .bind(to: tableView.rx.items(cellIdentifier: PostCell.identifier, cellType: PostCell.self)) { index, element, cell in
                 cell.selectionStyle = .none
                 cell.configure(with: element)

@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Comment: Codable {
-    let postId, id: Int
-    let name, email, body: String
+final class Comment: Object, Decodable {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var postId: Int
+    @Persisted var name: String
+    @Persisted var  email: String
+    @Persisted var  body: String
 }

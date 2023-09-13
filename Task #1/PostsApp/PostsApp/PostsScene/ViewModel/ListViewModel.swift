@@ -16,13 +16,12 @@ protocol ListViewModelProtocol {
     var currentUser: BehaviorRelay<User> { get }
     var filteredPosts: PublishSubject<[Post]> { get }
     var showComments: PublishSubject<Int> { get }
-    //    var detailData: DetailPost? { get set }
 }
 
 final class ListViewModel: ListViewModelProtocol {
     var bag = DisposeBag()
     var dataService: PostsDataServiceProtocol? = Container.postData.resolve(PostsDataServiceProtocol.self)
-    var currentUser = BehaviorRelay<User>(value: User(id: 0, name: "", username: ""))
+    var currentUser = BehaviorRelay<User>(value: User())
     var filteredPosts = PublishSubject<[Post]>()
     var showComments = PublishSubject<Int>()
     var users: [User] = []
@@ -30,13 +29,13 @@ final class ListViewModel: ListViewModelProtocol {
     
     init() {
         Task {
-            users = await getUsers()
+//            users = await getUsers()
             posts = await getPosts()
         }
         filterPosts()
     }
     
-    func getUsers() async -> [User] {
+     func getUsers() async -> [User] {
         do {
             if let data = try await dataService?.getUsers() {
                 if let currentUser = data.first(where: { $0.id == 1 }) {
@@ -62,9 +61,13 @@ final class ListViewModel: ListViewModelProtocol {
     }
     
     private func filterPosts() {
-        currentUser.subscribe { [weak self] user in
+        currentUser
+            .observe(on: MainScheduler.asyncInstance)
+            .subscribe { [weak self] user in
             if let posts = self?.posts.filter({$0.userId == user.id}) {
-                self?.filteredPosts.onNext(posts)
+                DispatchQueue.main.async {
+                    self?.filteredPosts.onNext(posts)
+                    }
             }
         }.disposed(by: bag)
     }

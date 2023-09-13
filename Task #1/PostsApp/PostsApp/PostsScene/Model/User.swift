@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct User: Codable {
-    let id: Int
-    let name, username: String
+final class User: Object, Decodable {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var name: String
+    @Persisted var username: String
+    @Persisted var email: String
 }

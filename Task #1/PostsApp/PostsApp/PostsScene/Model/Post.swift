@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import RealmSwift
 
-struct Post: Codable {
-    let userId, id: Int
-    let title, body: String
+final class Post: Object, Decodable {
+    @Persisted(primaryKey: true) var id: Int
+    @Persisted var userId: Int
+    @Persisted var title: String
+    @Persisted var body: String
 }

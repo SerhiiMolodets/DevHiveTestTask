@@ -60,6 +60,7 @@ class CommentsViewController: UIViewController {
     private func bindTableData() {
         guard let viewModel else { return }
         viewModel.filteredComments
+            .observe(on:MainScheduler.asyncInstance)
             .bind(to: tableView.rx.items(cellIdentifier: CommentCell.identifier, cellType: CommentCell.self)) { index, element, cell in
                 cell.selectionStyle = .none
                 cell.configure(with: element)
@@ -67,10 +68,9 @@ class CommentsViewController: UIViewController {
             .disposed(by: bag)
         
         viewModel.filteredComments
+            .observe(on:MainScheduler.asyncInstance)
             .subscribe(onNext: { comments in
-                DispatchQueue.main.async {
                     self.title = "Comments (\(comments.count))"
-                }
             }).disposed(by: bag)
     }
 }
